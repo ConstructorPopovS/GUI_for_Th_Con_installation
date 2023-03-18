@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import tkinter as tk
 import tkinter.ttk as ttk
-from MCC134Reader_Directory import MCC134Reader
+import Main_Window.MainWindowFunctions.MainWindowFunctions as Functions
 
 
 class MainWindowDesignApp:
@@ -66,7 +66,7 @@ class MainWindowDesignApp:
         self.btn_start = ttk.Button(self.toplevel)
         self.btn_start.configure(text='Start')
         self.btn_start.grid(column=0, row=2)
-        self.btn_start.configure(command=self.start)
+        self.btn_start.configure(command=Functions.runMCC134)
 
         # Main widget
         self.mainwindow = self.toplevel
@@ -74,9 +74,6 @@ class MainWindowDesignApp:
     def run(self):
         self.mainwindow.mainloop()
 
-    def start(self):
-        MCC134Reader.printHello()
-        MCC134Reader.startListening()
 
 
 if __name__ == "__main__":

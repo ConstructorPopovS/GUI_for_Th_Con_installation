@@ -2,7 +2,7 @@ from __future__ import print_function
 from time import sleep
 from sys import stdout
 from daqhats import mcc134, HatIDs, HatError, TcTypes
-from daqhats_utils import select_hat_device, tc_type_to_string
+from MCC134Reader_Directory.daqhats_utils import select_hat_device, tc_type_to_string
 import csv #for saving data in fil in csv format
 import time #for creating timer during experiment
 
