@@ -2,16 +2,16 @@
 from __future__ import print_function
 from time import sleep
 from sys import stdout
-import sys
 from daqhats import mcc134, HatIDs, HatError, TcTypes
 
-import definitions
+# ------------------------------------------------------------
+import sys
 import os
-print(definitions.ROOT_DIR)
-MCCReader_Directory_full_path = os.path.realpath(os.path.join(definitions.ROOT_DIR, 'MCC134Reader_Directory'))
-print(MCCReader_Directory_full_path)
-print(sys.path)
-sys.path.append(MCCReader_Directory_full_path)
+import definitions
+# Appending full path to MCC134Reader_Directory to sys.path
+full_path_of_MCC134Reader_Dir = os.path.realpath(os.path.join(definitions.ROOT_DIR, 'MCC134Reader_Directory'))
+sys.path.append(full_path_of_MCC134Reader_Dir)
+# ------------------------------------------------------------
 
 from MCC134Reader_Directory.daqhats_utils import select_hat_device, tc_type_to_string
 import csv #for saving data in fil in csv format
