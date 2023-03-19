@@ -13,7 +13,7 @@ full_path_of_MCC134Reader_Dir = os.path.realpath(os.path.join(definitions.ROOT_D
 sys.path.append(full_path_of_MCC134Reader_Dir)
 # ------------------------------------------------------------
 
-from MCC134Reader_Directory.daqhats_utils import select_hat_device, tc_type_to_string
+from MCC134_Reader_module.daqhats_utils import select_hat_device, tc_type_to_string
 import csv #for saving data in fil in csv format
 import time #for creating timer during experiment
 

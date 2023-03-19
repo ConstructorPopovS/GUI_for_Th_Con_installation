@@ -6,13 +6,13 @@ from daqhats import mcc134, HatIDs, HatError, TcTypes
 # ------------------------------------------------------------
 import sys
 import os
-import definitions
-# Appending full path to MCC134Reader_Directory to sys.path
-full_path_of_MCC134Reader_Dir = os.path.realpath(os.path.join(definitions.ROOT_DIR, 'MCC134Reader_Directory'))
-sys.path.append(full_path_of_MCC134Reader_Dir)
+# import definitions
+# Appending full path to MCC134_Reader_module to sys.path
+full_path_of_MCC134_Reader_module = os.path.realpath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.append(full_path_of_MCC134_Reader_module)
 # ------------------------------------------------------------
 
-from MCC134Reader_Directory.daqhats_utils import select_hat_device, tc_type_to_string
+from MCC134_Reader_module.daqhats_utils import select_hat_device, tc_type_to_string
 import csv #for saving data in fil in csv format
 import time #for creating timer during experiment
 

@@ -5,16 +5,18 @@ import tkinter.ttk as ttk
 # ------------------------------------------------------------
 import sys
 import os
-# Appending full path to definitions directory directory to sys.path
-full_path_of_definitions = os.path.realpath(os.path.join(os.path.dirname(__file__), '..'))
-sys.path.append(full_path_of_definitions)
-import definitions_for_Main_Window
-# Appending full path to Main_Window directory to sys.path
-full_path_of_Main_Window = os.path.realpath(os.path.join(definitions_for_Main_Window.ROOT_DIR, 'Main_Window'))
-sys.path.append(full_path_of_Main_Window)
-# ------------------------------------------------------------
-import Main_Window.MainWindowFunctions as Functions
 
+# Appending full path to Main_Window directory to sys.path
+full_path_of_Main_Window = os.path.dirname(__file__)
+sys.path.append(full_path_of_Main_Window)
+import MainWindowFunctions as Functions
+
+# import MainWindowFunctions as Functions
+# from . import MainWindowFunctions as Functions
+
+# ------------------------------------------------------------
+
+# import MainWindowFunctions as Functions
 
 class MainWindowDesignApp:
     mcc134_listener = Functions.MCC134_listener()
