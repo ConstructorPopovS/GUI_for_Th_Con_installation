@@ -10,13 +10,7 @@ import os
 full_path_of_Main_Window = os.path.dirname(__file__)
 sys.path.append(full_path_of_Main_Window)
 import MainWindowFunctions as Functions
-
-# import MainWindowFunctions as Functions
-# from . import MainWindowFunctions as Functions
-
 # ------------------------------------------------------------
-
-# import MainWindowFunctions as Functions
 
 class MainWindowDesignApp:
     mcc134_listener = Functions.MCC134_listener()

@@ -48,9 +48,6 @@ class MCC134_listener:
             event_close.set()
 
             if event_close.is_set():
-                print()
-                print()
-                print("Thread1 is stopped")
                 break
 
 
@@ -115,9 +112,6 @@ class MCC134_listener:
 
         # Cheching event to close thread2
         if event_close.is_set():
-            print()
-            print()
-            print("Thread2 is stopped")
             return
 
      
