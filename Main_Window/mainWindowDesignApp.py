@@ -1,10 +1,12 @@
 #!/usr/bin/python3
 import tkinter as tk
 import tkinter.ttk as ttk
-import Main_Window.MainWindowFunctions.MainWindowFunctions as Functions
+import Main_Window.MainWindowFunctions as Functions
 
 
 class MainWindowDesignApp:
+    mcc134_listener = Functions.MCC134_listener()
+    
     def __init__(self, master=None):
         # build ui
         self.toplevel = tk.Tk() if master is None else tk.Toplevel(master)
@@ -66,7 +68,7 @@ class MainWindowDesignApp:
         self.btn_start = ttk.Button(self.toplevel)
         self.btn_start.configure(text='Start')
         self.btn_start.grid(column=0, row=2)
-        self.btn_start.configure(command=Functions.runMCC134)
+        self.btn_start.configure(command=self.mcc134_listener.start_listener_thread)
 
         # Main widget
         self.mainwindow = self.toplevel
