@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import tkinter as tk
 import tkinter.ttk as ttk
-import MCC134Reader
+from MCC134Reader_Directory import MCC134Reader
 
 
 class MainWindowDesignApp:
