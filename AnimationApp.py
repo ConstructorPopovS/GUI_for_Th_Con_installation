@@ -156,10 +156,14 @@ class AnimationApp():
             # Updating "out" lables
             controller.frames["MainPageGUI"].label_number_of_measurement.config(
                 text = "Measurement number: " + str(number_of_a_new_measurement))
-            controller.frames["MainPageGUI"].label_tc0.config(text = "tc0: " + str(new_tc0_value))
-            controller.frames["MainPageGUI"].label_tc1.config(text = "tc1: " + str(new_tc1_value))
-            controller.frames["MainPageGUI"].label_tc2.config(text = "tc2: " + str(new_tc2_value))
-            controller.frames["MainPageGUI"].label_tc3.config(text = "tc3: " + str(new_tc3_value))
+            controller.frames["MainPageGUI"].label_tc0.config(
+                text = "tc0: " + '{:10.2f} C'.format(new_tc0_value))
+            controller.frames["MainPageGUI"].label_tc1.config(
+                text = "tc1: " + '{:10.2f} C'.format(new_tc1_value))
+            controller.frames["MainPageGUI"].label_tc2.config(
+                text = "tc2: " + '{:10.2f} C'.format(new_tc2_value))
+            controller.frames["MainPageGUI"].label_tc3.config(
+                text = "tc3: " + '{:10.2f} C'.format(new_tc3_value))
 
         # print("Animation_flag is: " + str(self.doAnimation_flag))
     
