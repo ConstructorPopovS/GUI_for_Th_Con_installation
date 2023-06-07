@@ -63,6 +63,11 @@ class DataReader():
         value = self.read_tc(2)
         return value
     
+    def read_tc3(self):
+        # value = self.__read(self.NameTC[2])
+        value = self.read_tc(3)
+        return value
+    
     def read_tc(self, channel):
         # Read a single value from selected channel.
         value = self.hat.t_in_read(channel)

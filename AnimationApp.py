@@ -15,6 +15,7 @@ class AnimationApp():
         self.tc0_list = []
         self.tc1_list = []
         self.tc2_list = []
+        self.tc3_list = []
 
         # Sample settings
         self._sample_height = 9.8 # in mm
@@ -51,7 +52,7 @@ class AnimationApp():
         dataHeader.append("Sample")
         dataHeader.append("Time")
         
-        for channel in (0, 1, 2):
+        for channel in (0, 1, 2, 3):
             dataHeader.append("Channel" + str(channel))
             
         # Write dataHeader to file
@@ -109,6 +110,7 @@ class AnimationApp():
             new_tc0_value = self.data_reader.read_tc0()
             new_tc1_value = self.data_reader.read_tc1()
             new_tc2_value = self.data_reader.read_tc2()
+            new_tc3_value = self.data_reader.read_tc3()
 
             # Time from start
             measurement_time = time.perf_counter()
@@ -119,6 +121,7 @@ class AnimationApp():
             self.tc0_list.append(new_tc0_value)
             self.tc1_list.append(new_tc1_value)
             self.tc2_list.append(new_tc2_value)            
+            self.tc3_list.append(new_tc3_value)         
             # |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
             # Creating a list of the new measurements data to save in the file
@@ -128,6 +131,7 @@ class AnimationApp():
             dataRow.append(new_tc0_value)
             dataRow.append(new_tc1_value)
             dataRow.append(new_tc2_value)
+            dataRow.append(new_tc3_value)
             self.writer.writerow(dataRow)
 
 
@@ -136,13 +140,15 @@ class AnimationApp():
             print('{:10.2f} s '.format(new_measurement_time_from_start), end='')
             print('{:10.2f} C'.format(new_tc0_value), end='')
             print('{:10.2f} C'.format(new_tc1_value), end='')
-            print('{:10.2f} C'.format(new_tc2_value), end='', flush=True)
+            print('{:10.2f} C'.format(new_tc2_value), end='')
+            print('{:10.2f} C'.format(new_tc3_value), end='', flush=True)
 
             # Slicing the last parts of the axes data lists
             self.numbers_of_measurings_list = self.numbers_of_measurings_list[-10:]
             self.tc0_list = self.tc0_list[-10:]
             self.tc1_list = self.tc1_list[-10:]
             self.tc2_list = self.tc2_list[-10:]
+            self.tc3_list = self.tc2_list[-10:]
 
             # Updating axes
             self.update_axes(axs=axs)
@@ -150,12 +156,10 @@ class AnimationApp():
             # Updating "out" lables
             controller.frames["MainPageGUI"].label_number_of_measurement.config(
                 text = "Measurement number: " + str(number_of_a_new_measurement))
-            controller.frames["MainPageGUI"].label_tc0.config(
-                text = "tc0: " + str('{:10.2f} C'.format(new_tc0_value)))
-            controller.frames["MainPageGUI"].label_tc1.config(
-                text = "tc1: " + str('{:10.2f} C'.format(new_tc1_value)))
-            controller.frames["MainPageGUI"].label_tc2.config(
-                text = "tc2: " + str('{:10.2f} C'.format(new_tc2_value)))
+            controller.frames["MainPageGUI"].label_tc0.config(text = "tc0: " + str(new_tc0_value))
+            controller.frames["MainPageGUI"].label_tc1.config(text = "tc1: " + str(new_tc1_value))
+            controller.frames["MainPageGUI"].label_tc2.config(text = "tc2: " + str(new_tc2_value))
+            controller.frames["MainPageGUI"].label_tc3.config(text = "tc3: " + str(new_tc3_value))
 
         # print("Animation_flag is: " + str(self.doAnimation_flag))
     
@@ -177,6 +181,12 @@ class AnimationApp():
             axs[2].set_ylim(15, 45)
             axs[2].set_title("Thermocouple " + str(2))
             axs[2].set_ylabel("T, deg C")
+
+            axs[3].clear()
+            axs[3].plot(self.numbers_of_measurings_list,self.tc2_list)
+            axs[3].set_ylim(15, 45)
+            axs[3].set_title("Thermocouple " + str(3))
+            axs[3].set_ylabel("T, deg C")
     
     def start(self, axs,
             #   Sample settings
@@ -210,19 +220,14 @@ class AnimationApp():
         except:
             self._delay_between_measurements = 0.5
             print("MyException from AApp.start(): Convertation delay_between_measurement to float is failed")
-        
-        # print('h:{0} name:{1} number:{2} delay:{3}'.format(self._sample_height,
-        #                                            self._name_of_file,
-        #                                            self._number_of_measurements,
-        #                                            self._delay_between_measurements))
+
         self.animation_setup()
         self.doAnimation_flag = True
         # self.animation_need_init_function_flag = True
         try:
             self.animation_function.resume()
         except:
-            pass
-            # print("MyException from AApp.start(): animation.resume()")
+            print("MyException from AApp.start(): animation.resume()")
 
 
     def finish(self, controller):
@@ -233,13 +238,13 @@ class AnimationApp():
             try:
                 self.animation_function.pause()
             except:
-                pass
-                # print("MyException from AApp.finish(): animation.pause()")
+                print("MyException from AApp.finish(): animation.pause()")
             self.data_file.close()
             self.numbers_of_measurings_list = []
             self.tc0_list = []
             self.tc1_list = []
             self.tc2_list = []
+            self.tc3_list = []
             self.data_file = None
             self.writer = None
         except:
