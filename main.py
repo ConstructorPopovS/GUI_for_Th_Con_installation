@@ -84,11 +84,11 @@ class MyApp(tk.Tk):
 
     def set_default_settings_in_entries(self):
         self.frames["MainPageGUI"].entry_name_of_experiment.insert(
-           0, "Test_q5_1s")
+           0, "_07.06_ThermCon_1")
         # Sample settings
         self.frames["MainPageGUI"].entry_h.insert(0, 9.8)
         # # Experiment settings
-        self.frames["MainPageGUI"].entry_quantity_of_measurements.insert(0, 5)
+        self.frames["MainPageGUI"].entry_quantity_of_measurements.insert(0, 240)
         self.frames["MainPageGUI"].entry_delay_between_measurements.insert(0, 1)
 
     def start_experiment(self):
